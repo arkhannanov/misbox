@@ -1,0 +1,11 @@
+.header {
+  background: hotpink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__login-logout {
+    align-self: center;
+    margin-right: 5rem;
+  }
+}

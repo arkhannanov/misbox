@@ -1,0 +1,50 @@
+.login {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 40%;
+
+    &-submit-button {
+      align-self: center;
+      margin: auto;
+      margin-top: 1.5rem;
+    }
+
+    &-input,
+    &-control{
+      border: 0;
+      height: 2rem;
+      border-radius: 0.5rem;
+      background: lightgray;
+      width: 100%;
+      padding-left: 0.5rem;
+      margin: auto;
+      margin-top: 0.5rem;
+    }
+
+    &-text-danger {
+      line-height: 0.1rem;
+      color: red;
+      align-self: center;
+    }
+
+    &-error {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    &-control {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

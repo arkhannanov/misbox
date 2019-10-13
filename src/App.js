@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import './App.scss';
+import Navbar from './components/Navbar/Navbar';
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import LoginPage from "./components/Login/Login";
+import {connect, Provider} from "react-redux";
+import {compose} from "redux";
+import store from "./redux/redux-store";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import './App.scss';
+import DepartametsContainer from "./components/DepartametsContainer/DepartametsContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  componentDidMount() {
+    if(this.props.isAuth === false) {
+
+      this.props.history.push("/auth");
+    }
+  }
+
+  render() {
+
+    return (
+      <div className='app'>
+        <HeaderContainer/>
+        <div className='app__content'>
+          <Navbar/>
+          <div className='app__content-right-side'>
+            <Route path='/departments'
+                   render={() => <DepartametsContainer/>}/>
+
+            <Route path='/auth'
+                   render={() => <LoginPage/>}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
+};
+
+
+let mapStateToProps = (state) => {
+  return ({
+    isAuth: state.auth.isAuth
+  })
 }
 
-export default App;
+
+let AppContainer = compose(
+  connect(mapStateToProps, {}),
+  withRouter
+)(App);
+
+
+const TestMO = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
+  </BrowserRouter>
+}
+
+export default TestMO;
+
+

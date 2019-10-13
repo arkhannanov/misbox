@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 18rem;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+
+  &__item {
+    list-style-type: none;
+    display: inline-block;
+    background: plum;
+    width: 18rem;
+    align-self: center;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    height: 2rem;
+    position: relative;
+
+    &:focus {
+      list-style-type: none;
+    }
+
+    &-input {
+      margin: auto;
+      position: absolute;
+      top: 0.2rem;
+      left: 2rem;
+      height: 1.5rem;
+      background: transparent;
+      border: none;
+    }
+
+    &-image {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.25rem;
+    }
+  }
+}
