@@ -9,11 +9,12 @@ import store from "./redux/redux-store";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import './App.scss';
 import DepartametsContainer from "./components/DepartametsContainer/DepartametsContainer";
-
+import history from './history';
+import EmployeesContainer from "./components/EmployeesContainer/EmployeesContainer";
 
 class App extends Component {
 
-  componentDidMount() {
+  componentDidMount(props) {
     if(this.props.isAuth === false) {
 
       this.props.history.push("/auth");
@@ -21,6 +22,10 @@ class App extends Component {
   }
 
   render() {
+
+    let url = `/${this.props.departmentName}`;
+
+    console.log('Render');
 
     return (
       <div className='app'>
@@ -33,6 +38,9 @@ class App extends Component {
 
             <Route path='/auth'
                    render={() => <LoginPage/>}/>
+
+            <Route path={'/departments'+ url + '/employees'}
+                   render={() => <EmployeesContainer/>}/>
           </div>
         </div>
       </div>
@@ -43,7 +51,8 @@ class App extends Component {
 
 let mapStateToProps = (state) => {
   return ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    departmentName: state.departmentsPage.currentUrl,
   })
 }
 
@@ -55,7 +64,7 @@ let AppContainer = compose(
 
 
 const TestMO = (props) => {
-  return <BrowserRouter>
+  return <BrowserRouter history={history}>
     <Provider store={store}>
       <AppContainer/>
     </Provider>

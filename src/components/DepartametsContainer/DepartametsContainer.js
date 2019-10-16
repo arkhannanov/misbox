@@ -4,7 +4,7 @@ import {DragDropContext} from 'react-beautiful-dnd';
 import {
     addItem,
     deleteItem,
-    handleDragAndDrop, updateItem,
+    handleDragAndDrop, setCurrentUrl, updateItem,
 } from "../../redux/departmets-reducer";
 import connect from "react-redux/es/connect/connect";
 import "./DepartamentsContainer.scss";
@@ -26,7 +26,6 @@ class DepartametsContainer extends Component {
         }
 
 
-
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="departaments">
@@ -44,6 +43,7 @@ class DepartametsContainer extends Component {
                                 departamets={this.props.departments}
                                 delete={this.props.deleteItem}
                                 update={this.props.updateItem}
+                                setCurrentUrl={this.props.setCurrentUrl}
                             />
                         </div>
                     </div>
@@ -59,5 +59,5 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addItem, deleteItem, handleDragAndDrop, updateItem})(DepartametsContainer);
+export default connect(mapStateToProps, {addItem, deleteItem, handleDragAndDrop, updateItem, setCurrentUrl})(DepartametsContainer);
 
